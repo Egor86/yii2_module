@@ -93,8 +93,9 @@ class InputController extends Controller
             for ($i = 0; $i < count($post); $i++) {
                 $models[$i] = new Input();
                 if (!$models[$i]->load($post, $i)) {
-                    return $this->render('create', [
-                        'models' => $models,
+                    return $this->redirect(['create',
+                        'form_id' => $post[$i]['form_id'],
+                        'input_sum' => count($post),
                     ]);
                 }
             }
